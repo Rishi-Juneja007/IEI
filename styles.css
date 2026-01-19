@@ -1,11 +1,6 @@
-/* 
-   IEI Student Chapter - MITS Gwalior 
-   Professional/Academic Theme
-*/
-
 :root {
-    --primary-color: #003366; /* Deep Blue - IEI Official vibe */
-    --secondary-color: #DAA520; /* Goldenrod/Gold - Accent */
+    --primary-color: #003366; 
+    --secondary-color: #DAA520; 
     --text-color: #333333;
     --light-bg: #f4f6f9;
     --white: #ffffff;
@@ -14,7 +9,7 @@
     --error-color: #dc3545;
 }
 
-/* Reset & Base Styles */
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -28,7 +23,7 @@ body {
     background-color: var(--light-bg);
 }
 
-/* Header & Nav */
+
 .main-header {
     background-color: var(--white);
     border-bottom: 4px solid var(--secondary-color);
@@ -94,7 +89,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Layout */
+
 main {
     max-width: 1100px;
     margin: 30px auto;
@@ -118,7 +113,7 @@ main {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* Form Styles */
+
 .form-container {
     max-width: 700px;
     margin: 0 auto;
@@ -181,7 +176,7 @@ main {
     transform: translateY(1px);
 }
 
-/* Table Styles */
+
 .table-responsive {
     overflow-x: auto;
 }
@@ -216,7 +211,7 @@ table tbody tr:hover {
     display: none;
 }
 
-/* Footer */
+
 footer {
     background-color: var(--primary-color);
     color: var(--white);
@@ -225,7 +220,7 @@ footer {
     margin-top: 50px;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
     .header-text h1 {
         font-size: 1.5rem;
@@ -246,3 +241,4 @@ footer {
         padding: 20px;
     }
 }
+
