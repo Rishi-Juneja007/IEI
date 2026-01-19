@@ -1,32 +1,23 @@
-/**
- * IEI Student Chapter - Application Logic
- * Encapsulated to avoid global variable pollution
- */
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
+   
     const form = document.getElementById('registrationForm');
     const studentsTableBody = document.getElementById('studentsBody');
     const noStudentsMsg = document.getElementById('no-students-msg');
 
-    // Storage Key
+    
     const STORAGE_KEY = 'iei_students_data';
 
-    /**
-     * Initialize Application
-     */
+    
     function init() {
         loadStudents();
         form.addEventListener('submit', handleRegistration);
     }
 
-    /**
-     * Handle Form Submission
-     * @param {Event} e 
-     */
+    
     function handleRegistration(e) {
         e.preventDefault();
 
-        // 1. Extract Values
+       
         const formData = new FormData(form);
         const student = {
             id: Date.now(), // Simple unique ID
@@ -39,28 +30,24 @@ document.addEventListener('DOMContentLoaded', () => {
             timestamp: new Date().toISOString()
         };
 
-        // 2. Validate
+        
         if (!validateStudent(student)) {
             return;
         }
 
-        // 3. Save to LocalStorage
+      
         saveStudent(student);
 
-        // 4. Update UI
+        
         addStudentToTable(student);
         toggleEmptyState(false);
         form.reset();
 
-        // 5. Feedback
+        
         alert('Registration Successful! Student added to the database.');
     }
 
-    /**
-     * Validate Student Data
-     * @param {Object} student 
-     * @returns {boolean} isValid
-     */
+    
     function validateStudent(student) {
         // Basic required check (HTML5 does most of this, but double check)
         if (!student.fullName || !student.enrollmentNo || !student.branch || !student.semester) {
@@ -68,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return false;
         }
 
-        // Email Validation Regex
+        
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(student.email)) {
             alert('Please enter a valid email address.');
             return false;
         }
 
-        // Phone Validation (10 digits)
+        
         const phoneRegex = /^\d{10}$/;
         if (!phoneRegex.test(student.phone)) {
             alert('Phone number must be exactly 10 digits.');
@@ -85,28 +72,20 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 
-    /**
-     * Save Student to LocalStorage
-     * @param {Object} student 
-     */
+    
     function saveStudent(student) {
         const students = getStudentsFromStorage();
         students.push(student);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
     }
 
-    /**
-     * Retrieve Students from LocalStorage
-     * @returns {Array} students
-     */
+    
     function getStudentsFromStorage() {
         const data = localStorage.getItem(STORAGE_KEY);
         return data ? JSON.parse(data) : [];
     }
 
-    /**
-     * Load and Display Students on Page Load
-     */
+    
     function loadStudents() {
         const students = getStudentsFromStorage();
         studentsTableBody.innerHTML = ''; // Clear current
@@ -119,10 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * Add Single Student Row to Table
-     * @param {Object} student 
-     */
+    
     function addStudentToTable(student) {
         const row = document.createElement('tr');
 
@@ -140,10 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         studentsTableBody.appendChild(row);
     }
 
-    /**
-     * Toggle "No students" message
-     * @param {boolean} isEmpty 
-     */
+    
     function toggleEmptyState(isEmpty) {
         if (isEmpty) {
             noStudentsMsg.classList.remove('hidden');
@@ -154,11 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * Prevent XSS helper
-     * @param {string} str 
-     * @returns {string} escaped string
-     */
+    
     function escapeHtml(str) {
         const div = document.createElement('div');
         div.textContent = str;
@@ -168,3 +137,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start App
     init();
 });
+
